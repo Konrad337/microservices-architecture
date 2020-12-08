@@ -4,6 +4,7 @@ import com.griddynamics.microservices.product.model.Product;
 import com.griddynamics.microservices.product.model.ProductAvailability;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -102,12 +103,12 @@ public class ProductService {
 
   @SuppressWarnings({"unused"})
   public Optional<Product> defaultFallbackProductsById(String id) {
-    throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE);
+    return Optional.empty();
   }
 
   @SuppressWarnings("unused")
     public List<Product> defaultFallbackProductsBySku(String sku) {
-    throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE);
+    return new ArrayList<>();
   }
 
   private List<Product> filterAvailable(List<Product> products) {
